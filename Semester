@@ -31,8 +31,13 @@ public class CourseM {
 	public Double getYid() {
 		return Yid;
 	}
-
-	public Double tYid() {
+	public int setSid() {
+		return Sid;
+	}
+	public String setSName() {
+		return SName;
+	}
+	public Double setYid() {
 		return Yid;
 	}
 
