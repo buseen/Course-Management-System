@@ -32,15 +32,7 @@ public class CourseM {
 		return Yid;
 	}
 
-	public int setSid() {
-		return Sid;
-	}
-
-	public String setSName() {
-		return SName;
-	}
-
-	public Double setYid() {
+	public Double tYid() {
 		return Yid;
 	}
 
@@ -58,11 +50,17 @@ public class CourseM {
 
 		{
 			String sql = "INSERT INTO Semesters (Sid, SName, Yid) VALUES (?, ?, ?)";
-			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setInt(1, "Sid");
-			statement.setString(2, "SName");
-			statement.setDouble(3, "Yid");
-			statement.executeUpdate();
+			PreparedStatement statement;
+			try {
+				statement = connection.prepareStatement(sql);
+				statement.setInt(1, Sid);
+				statement.setString(2, SName);
+				statement.setDouble(3, Yid);
+				statement.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
 		}
 	}
@@ -85,23 +83,33 @@ public class CourseM {
 	public void Update(int Sid, String Sname, Double Yid) {
 		{
 			String sql = "UPDATE Semesters SET Sid = ?" + "SName = ?" + "WHERE Yid = ?";
-			PreparedStatement statemente = connection.prepareStatement(sql);
-			statemente.setInt(1, "Sid");
-			statemente.setString(2, "SName");
-			statemente.setDouble(3, "Yid");
-			statemente.executeUpdate();
+			PreparedStatement statemente;
+
+			try {
+				statemente = connection.prepareStatement(sql);
+				statemente.setInt(1, Sid);
+				statemente.setString(2, SName);
+				statemente.setDouble(3, Yid);
+				statemente.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
 	public void Delete(int Sid, String Sname, int Yid) {
 		String sql = "DELETE FROM Semesters WHERE Yid = ?";
-
-		PreparedStatement statemente = connection.prepareStatement(sql);
-		statemente.setInt(1, "Sid");
-		statemente.setString(2, "SName");
-		statemente.setDouble(3, "Yid");
-		statemente.executeUpdate();
-
+		PreparedStatement statemente;
+		try {
+			statemente = connection.prepareStatement(sql);
+			statemente.setInt(1, Sid);
+			statemente.setString(2, SName);
+			statemente.setDouble(3, Yid);
+			statemente.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
