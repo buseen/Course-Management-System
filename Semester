@@ -7,11 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SemesterM {
+public class CourseM {
 
-	private int Sid;
-	private String SName;
-	private Double Yid;
+	public int Sid;
+	public String SName;
+	public Double Yid;
 	public Connection connection = null;
 
 	public void Semester(int SID, String SName, Double YID) {
@@ -19,7 +19,8 @@ public class SemesterM {
 		this.SName = SName;
 		this.Yid = YID;
 	}
-	public int getSID() {
+
+	public int getSid() {
 		return Sid;
 	}
 
@@ -27,7 +28,19 @@ public class SemesterM {
 		return SName;
 	}
 
-	public Double getYId() {
+	public Double getYid() {
+		return Yid;
+	}
+
+	public int setSid() {
+		return Sid;
+	}
+
+	public String setSName() {
+		return SName;
+	}
+
+	public Double setYid() {
 		return Yid;
 	}
 
@@ -53,22 +66,21 @@ public class SemesterM {
 
 		}
 	}
-	  public void selectAll(int Sid, String Sname, Double Yid){
-	        String sql = "SELECT Sid, Sname, Yid FROM Semesters";
-	        
-	        try (Connection connection = this.getConnection();
-	             Statement stmt  = connection.createStatement();
-	             ResultSet rs    = stmt.executeQuery(sql)){
-	            
-	            while (rs.next()) {
-	                System.out.println(rs.getInt("Sid") +  "\t" + 
-	                                   rs.getString("Sname") + "\t" +
-	                                   rs.getDouble("Yid"));
-	            }
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-	    }
+
+	public void selectAll(int Sid, String Sname, Double Yid) {
+		String sql = "SELECT Sid, Sname, Yid FROM Semesters";
+
+		try (Connection connection = this.getConnection();
+				Statement stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			while (rs.next()) {
+				System.out.println(rs.getInt("Sid") + "\t" + rs.getString("Sname") + "\t" + rs.getDouble("Yid"));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 	public void Update(int Sid, String Sname, Double Yid) {
 		{
@@ -94,6 +106,6 @@ public class SemesterM {
 
 	public static void main(String[] args) {
 
-		SemesterM SemesterManagement = new SemesterM();
+		CourseM CourseManagement = new CourseM();
 	}
 }
